@@ -1,0 +1,41 @@
+# Script to take spectral image and obtain pre-processed data
+# using the rasp_app web server.
+
+# Import all libraries
+import os
+import subprocess
+from selenium import webdriver as wd
+#import urllib
+#import urllib2
+
+# Initializiation and moving to base directory
+base_dir = '~/wv2016/real_project/spectra_ML/grapes/jpgs'
+rasp_dir = '~/wv2016/real_project/fruitoscopy/rasp_app' 
+try:
+    cmd = 'cd ' + base_dir
+    subprocess.call(cmd, shell = True)
+except KeyboardInterrupt:
+    print ('good bye')
+#driver = wd.Firefox()
+
+# Loop through all files in the directory
+files = os.listdir()
+print (files)
+for j in files:
+    # Copy file from base directory and name it 'source.jpg'
+    try:
+        cmd = 'cp ' + j + ' ' + rasp_dir + '; mv ' + j + ' source.jpg'
+        subprocess.call(cmd, shell = True)
+    except KeyboardInterrupt:
+        print ('good bye')
+
+    # Refreshes webpage
+    #driver.get(driver.getCurrentUrl())
+
+# Move csv file to grapes directory
+try:
+    cmd = 'mv ' + rasp_dir + '/static/spectrum.csv ' + base_dir[:-5]
+    subprocess.call(cmd, shell = True)
+except KeyboardInterrupt:
+    print ('good bye')
+
