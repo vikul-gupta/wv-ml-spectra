@@ -137,7 +137,7 @@ for name in csv_file.values():
 
     # Creation of actual labels
     labels = []
-    '''
+    
     for i in range(0,9):
         labels.append(1)
     for i in range(9,18):
@@ -149,7 +149,7 @@ for name in csv_file.values():
     for i in range(0,27):
         labels.append(int(random.random() * 3) + 1)
     print (labels)
-
+    '''
     # QDA model
     qda = QuadraticDiscriminantAnalysis()
     qda.fit(comps, labels)
@@ -183,7 +183,7 @@ for name in csv_file.values():
         comps_i = comps[val:val + 9]
         plt.scatter(comps_i[:,0], comps_i[:,1], color = colors[i], label = 'Bunch %d' % (i + 1))
 
-    plt.title('TSNE for 3 types of green grapes')
+    plt.title('PCA and QDA for 3 types of green grapes')
     plt.legend()
     plt.show()
     savefig('graphs/plt_spec_pca_qda' + name  + '.png', bbox_inches='tight')

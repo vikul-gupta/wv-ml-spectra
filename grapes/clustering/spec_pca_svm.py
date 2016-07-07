@@ -152,7 +152,8 @@ for name in csv_file.values():
     x_min, x_max = comps[:, 0].min() - 1, comps[:, 0].max() + 1
     y_min, y_max = comps[:, 1].min() - 1, comps[:, 1].max() + 1
     xx, yy = np.meshgrid(np.arange(x_min, x_max, h),np.arange(y_min, y_max, h))
-    Z = s.predict(np.c_[xx.ravel(), yy.ravel()])
+    arr_conc = np.c_[xx.ravel(), yy.ravel()]    # concatenated array
+    Z = s.predict(arr_conc)
     Z = Z.reshape(xx.shape) 
     plt.contourf(xx, yy, Z, cmap=plt.cm.Paired, alpha=0.8)
 
